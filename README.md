@@ -1,5 +1,7 @@
 ## Pearl Talent Assessment Project
 
+- Repo: https://github.com/ogaroh/pearl 
+
 ### Features
 - Fetches a list of items (mocked for demo purposes)
 - Search items by title
@@ -19,12 +21,13 @@
 - Code Structure: Follows standard Flutter project structure with clear separation of data, presentation, and business logic.
 
 ### How Favorites Work
-Tapping the star icon on an item toggles its favorite status.
-The favorite state is updated in shared preferences and reflected in the UI immediately.
-On app launch, favorite states are loaded and merged with the item list.
+- Tapping the star icon on an item toggles its favorite status.
+- The favorite state is updated in shared preferences and reflected in the UI immediately.
+- On app launch, favorite states are loaded and merged with the item list.
+- The home page has a favorites counter in the appbar
 
 ### Further Improvements
-Replace mock data with a real backend or database.
-Add tests for bloc logic and widgets.
-Improve error and edge case handling.
-Add more item attributes or filtering options.
+- Replace mock data with a real backend or database.
+- Add tests for bloc logic and widgets.
+- Improve error and edge case handling.
+- Add more item attributes or filtering options.
