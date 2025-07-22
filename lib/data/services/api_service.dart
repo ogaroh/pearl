@@ -1,7 +1,7 @@
 import 'package:pearl/data/models/item.dart';
 import 'package:pearl/data/services/dummy_data.dart';
 
-class MockApiService {
+class ApiService {
   // Mock API service methods
   Future<List<Item>> fetchItems() async {
     await Future.delayed(Duration(seconds: 1)); // Simulate network delay
