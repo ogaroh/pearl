@@ -14,7 +14,24 @@ class ItemsCard extends StatelessWidget {
     return Card(
       child: ListTile(
         title: Text(item.title),
-        subtitle: Text(item.timestamp.toString()),
+        subtitle: Column(
+          children: [
+            Text(item.timestamp.toString()),
+            if (item.tag != null && item.tag!.isNotEmpty)
+              Container(
+                margin: const EdgeInsets.only(left: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                decoration: BoxDecoration(
+                  color: ItemsCard.tagColor(item.tag!),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text(
+                  item.tag!,
+                  style: const TextStyle(color: Colors.white, fontSize: 12),
+                ),
+              ),
+          ],
+        ),
         trailing: IconButton(
           icon: Icon(
             item.favorite == true ? Icons.star : Icons.star_border,
@@ -26,5 +43,18 @@ class ItemsCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  static Color tagColor(String tag) {
+    switch (tag.toLowerCase()) {
+      case 'new':
+        return Colors.blue;
+      case 'old':
+        return Colors.blueGrey;
+      case 'hot':
+        return Colors.red;
+      default:
+        return Colors.grey.shade600;
+    }
   }
 }
