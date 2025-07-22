@@ -1,4 +1,4 @@
-# Project Empty Template
+# Pearl Talent Assessment Project
 
 This is a sample repository for you to start developing the task. Please carefully read the requirements of the task statement on the platform and follow best practices on how to use this repository.
 
