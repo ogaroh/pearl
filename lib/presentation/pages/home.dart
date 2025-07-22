@@ -38,6 +38,28 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
+        actions: [
+          BlocBuilder<ItemsBloc, ItemsState>(
+            bloc: _itemsBloc,
+            builder: (context, state) {
+              int favCount = 0;
+              if (state is ItemsLoaded) {
+                favCount = state.items
+                    .where((item) => item.favorite == true)
+                    .length;
+              }
+
+              return Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: Badge.count(
+                  count: favCount,
+                  backgroundColor: Colors.red,
+                  child: Icon(Icons.star),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: BlocProvider(
         create: (_) => _itemsBloc,
