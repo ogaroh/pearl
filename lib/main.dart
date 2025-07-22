@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Pearl Talent Assessment Home Page'),
+      home: const MyHomePage(title: 'Pearl Talent'),
     );
   }
 }
