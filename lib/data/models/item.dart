@@ -36,6 +36,23 @@ class Item {
     };
   }
 
+  // copy with
+  Item copyWith({
+    String? id,
+    String? title,
+    DateTime? timestamp,
+    bool? favorite,
+    String? tag,
+  }) {
+    return Item(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      timestamp: timestamp ?? this.timestamp,
+      favorite: favorite ?? this.favorite,
+      tag: tag ?? this.tag,
+    );
+  }
+
   @override
   String toString() {
     return 'Item(id: $id, title: $title, timestamp: $timestamp, favorite: $favorite)';
