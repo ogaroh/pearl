@@ -1,23 +1,29 @@
-# Pearl Talent Assessment Project
+## Pearl Talent Assessment Project
 
-This is a sample repository for you to start developing the task. Please carefully read the requirements of the task statement on the platform and follow best practices on how to use this repository.
+### Features
+- Fetches a list of items (mocked for demo purposes)
+- Search items by title
+- Toggle favorite status for items
+- Favorites are persisted locally using shared preferences
 
-## Repository Readme
+### Assumptions
+- The item data is mocked in the repository for demonstration. In a real scenario, this would be replaced with an API or database source.
+- Each item has a unique string id, a title, a timestamp, and an optional favorite flag and tag.
+- The favorite status is stored as a list of item IDs in shared preferences.
 
-- It should contain the project title
-- A one-sentence description about the project
-- It should include a list of languages, frameworks, and/or technologies used
-- How to install and use the project (instructions)
-- Don’t forget the .gitignore
-- If you are using a personal GitHub, mention that it is a challenge by Coodesh:
+### Technical Decisions & Reasoning
+- State Management: Chose flutter_bloc for scalable, testable state management. Bloc events and states are clearly separated for maintainability.
+- Persistence: Used shared_preferences for simple local storage of favorites, as it fits the requirements and is easy to integrate.
+- UI Composition: Widgets are modular (ItemsCard, SearchBar) for reusability and clarity. The home page uses BlocProvider and BlocBuilder for reactive UI updates.
+- Error Handling: Bloc emits error states for fetch failures, which are displayed in the UI.
+- Code Structure: Follows standard Flutter project structure with clear separation of data, presentation, and business logic.
 
-> This is a challenge by Coodesh
-
-## Completion and Submission Instructions
-1. Add the link to the repository with your solution to the task on the platform
-2. Check if the Readme is good and make the final commit to your repository
-3. Submit and wait for further instructions. If the test requires a video presentation, it will be possible to record it on the submission screen after adding the repository link. Good luck and success! =)
-
-## Support
-
-For questions about the process, send a message directly to a specialist in the platform chat.
+### How Favorites Work
+Tapping the star icon on an item toggles its favorite status.
+The favorite state is updated in shared preferences and reflected in the UI immediately.
+On app launch, favorite states are loaded and merged with the item list.
+Further Improvements
+Replace mock data with a real backend or database.
+Add tests for bloc logic and widgets.
+Improve error and edge case handling.
+Add more item attributes or filtering options.
