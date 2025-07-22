@@ -11,6 +11,11 @@ class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
   ItemsBloc(this.itemsRepository) : super(ItemsInitial()) {
     on<FetchItems>(_onFetchItems);
     on<SearchItems>(_onSearchItems);
+    on<ToggleFavorite>(_onToggleFavorite);
+  }
+
+  Future<void> _onToggleFavorite(ToggleFavorite event, Emitter<ItemsState> emit) async {
+    // TODO: Implement favorite toggling logic here
   }
 
   Future<void> _onFetchItems(FetchItems event, Emitter<ItemsState> emit) async {
