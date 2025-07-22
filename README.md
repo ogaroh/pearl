@@ -22,7 +22,8 @@
 Tapping the star icon on an item toggles its favorite status.
 The favorite state is updated in shared preferences and reflected in the UI immediately.
 On app launch, favorite states are loaded and merged with the item list.
-Further Improvements
+
+### Further Improvements
 Replace mock data with a real backend or database.
 Add tests for bloc logic and widgets.
 Improve error and edge case handling.
