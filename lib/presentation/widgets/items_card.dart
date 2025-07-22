@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../../data/models/item.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,11 +16,15 @@ class ItemsCard extends StatelessWidget {
       child: ListTile(
         title: Text(item.title),
         subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(item.timestamp.toString()),
+            Text(
+              DateFormat.yMMMEd().format(item.timestamp),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11),
+            ),
             if (item.tag != null && item.tag!.isNotEmpty)
               Container(
-                margin: const EdgeInsets.only(left: 8),
+                margin: const EdgeInsets.only(top: 8),
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 decoration: BoxDecoration(
                   color: ItemsCard.tagColor(item.tag!),
