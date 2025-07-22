@@ -33,6 +33,10 @@ class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
     emit(ItemsLoading());
     try {
       _allItems = await itemsRepository.fetchItems();
+      final favorites = await localStorage.getFavorites();
+      _allItems = _allItems
+          .map((item) => item.copyWith(favorite: favorites.contains(item.id)))
+          .toList();
       emit(ItemsLoaded(_allItems));
     } catch (e) {
       emit(ItemsError(e.toString()));

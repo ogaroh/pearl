@@ -43,12 +43,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -72,11 +66,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     if (state.items.isEmpty) {
                       return Center(child: Text('No items found.'));
                     }
-                    return ListView.builder(
-                      itemCount: state.items.length,
-                      itemBuilder: (context, index) {
-                        return ItemsCard(item: state.items[index]);
-                      },
+                    return RefreshIndicator.adaptive(
+                      onRefresh: () async => _itemsBloc.add(FetchItems()),
+                      child: ListView.builder(
+                        itemCount: state.items.length,
+                        itemBuilder: (context, index) {
+                          return ItemsCard(item: state.items[index]);
+                        },
+                      ),
                     );
                   } else if (state is ItemsError) {
                     return Center(child: Text('Error: ${state.message}'));
