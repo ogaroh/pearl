@@ -3,9 +3,12 @@ import 'items_event.dart';
 import 'items_state.dart';
 import '../../../data/models/item.dart';
 import '../../../data/repositories/items_repository.dart';
+import '../../../data/services/local_storage_service.dart';
 
 class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
   final ItemsRepository itemsRepository;
+  final localStorage = LocalStorageService();
+
   List<Item> _allItems = [];
 
   ItemsBloc(this.itemsRepository) : super(ItemsInitial()) {
@@ -14,8 +17,16 @@ class ItemsBloc extends Bloc<ItemsEvent, ItemsState> {
     on<ToggleFavorite>(_onToggleFavorite);
   }
 
-  Future<void> _onToggleFavorite(ToggleFavorite event, Emitter<ItemsState> emit) async {
-    // TODO: Implement favorite toggling logic here
+  Future<void> _onToggleFavorite(
+    ToggleFavorite event,
+    Emitter<ItemsState> emit,
+  ) async {
+    await localStorage.toggleFavorite(event.id);
+    final favorites = await localStorage.getFavorites();
+    _allItems = _allItems
+        .map((item) => item.copyWith(favorite: favorites.contains(item.id)))
+        .toList();
+    emit(ItemsLoaded(_allItems));
   }
 
   Future<void> _onFetchItems(FetchItems event, Emitter<ItemsState> emit) async {
