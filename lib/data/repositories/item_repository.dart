@@ -13,4 +13,7 @@ class ItemRepository {
   Future<Item> fetchItemById(String id) async {
     return apiService.fetchItemById(id);
   }
+
+  // add to favorites
+  Future<void> toggleFavorite(String id) async {}
 }
